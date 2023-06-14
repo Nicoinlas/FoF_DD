@@ -1,6 +1,5 @@
 pandas
 openpyxl
 xlsxwriter
-streamlit
 io
 zipfile
