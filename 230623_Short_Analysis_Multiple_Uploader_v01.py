@@ -44,8 +44,7 @@ def zipsdd_csvs(dfs,name,date):
     return zip_io
 
 btn = st.button("Download CSVs")
-
-    if btn:
+if btn:
         dfs =  combinesdds(xlsxs)
         zip_io = zipsdd_csvs(dfs,name,date)
         tmp_download_link = st.download_button(
