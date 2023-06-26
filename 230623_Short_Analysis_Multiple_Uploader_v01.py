@@ -18,8 +18,6 @@ def combinesdds(xlsxs):
         for sheet_name in sheet_names:
             df = pd.read_excel(xlsx, sheet_name=sheet_name)
             dfs[sheet_name].append(df)
-    dfs["UP01_Funds"] = dfs["UP01_Funds"].sort_values(['Salesforce.com ID','Date of Latest Quarterly Performance'], ascending[True,False])
-    dfs["UP01_Funds"] = dfs["UP01_Funds"].drop_duplicates(subset="Salesforce.com ID", keep="first")
     return dfs
 
 
@@ -29,6 +27,8 @@ def zipsdd_csvs(dfs,name,date):
     with zipfile.ZipFile(zip_io, mode='w') as zipped_files:
         for sheet_name in sheet_names:
             combined_df = pd.concat(dfs[sheet_name])  # concatenate the dataframes first
+            combined_df = combined_df.sort_values(['Salesforce.com ID','Date of Latest Quarterly Performance'], ascending[True,False])
+            combined_df = combined_df.drop_duplicates(subset="Salesforce.com ID", keep="first")
             file_name = str(date + " " + name + "_" + sheet_name + ".csv")
             csv_data = combined_df.to_csv(index=False, encoding="utf-8-sig")
             zipped_files.writestr(file_name, csv_data.encode('utf-8-sig'))
