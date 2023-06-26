@@ -33,7 +33,7 @@ def zipsdd_csvs(dfs,name,date):
     with zipfile.ZipFile(zip_io, mode='w') as zipped_files:
         for sheet_name in sheet_names:
             file_name = str(date + " " + name + "_" + sheet_name + ".csv")
-            csv_data = combined_df.to_csv(index=False, encoding="utf-8-sig")
+            csv_data = dfs.to_csv(index=False, encoding="utf-8-sig")
             zipped_files.writestr(file_name, csv_data.encode('utf-8-sig'))
     zip_io.seek(0)
     return zip_io
