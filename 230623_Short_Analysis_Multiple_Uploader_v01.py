@@ -18,6 +18,8 @@ def combinesdds(xlsxs):
         for sheet_name in sheet_names:
             df = pd.read_excel(xlsx, sheet_name=sheet_name)
             dfs[sheet_name].append(df)
+    dfs["UP01_Funds"] = dfs["UP01_Funds"].sort_values(['Salesforce.com ID','Date of Latest Quarterly Performance'], ascending[True,False])
+    dfs["UP01_Funds"] = dfs["UP01_Funds"].drop_duplicates(subset="name", keep="first")   
     return dfs
 
 
