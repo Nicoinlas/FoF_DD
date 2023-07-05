@@ -36,7 +36,7 @@ arrays = {
 
 sheet_names = arrays[selected_option]
 
-def combinesdds(xlsxs, sheet names):
+def combinesdds(xlsxs, sheet_names):
     dfs = {name: [] for name in sheet_names}
     for xlsx in xlsxs:
         for sheet_name in sheet_names:
