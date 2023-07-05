@@ -41,6 +41,7 @@ def combinesdds(xlsxs, sheet_names):
     for xlsx in xlsxs:
         for sheet_name in sheet_names:
             df = pd.read_excel(xlsx, sheet_name=sheet_name)
+            df = df.replace('', np.nan)
             df = df.dropna(how='all')
             dfs[sheet_name].append(df)
     for sheet_name in sheet_names:
