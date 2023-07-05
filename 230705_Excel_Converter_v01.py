@@ -27,10 +27,10 @@ selected_option = st.selectbox('Select your options:', options)
 st.write('You selected:', selected_option)
 
 arrays = {
-    'Short Analysis':["UP01_Funds", "UP02_Fund Financials", "UP03_Portfolio Companies", "UP04_PFC Financials"]
-    'PQ Financials': ["08a_UP SF_Financial_New","08b_UP SF_Financial_New","09a_UP SF_Financial_Existing","09b_UP SF_Financial_Existing"]
-    'PQ Fund': []
-    'PQ Fund Manager':[]
+    'Short Analysis':["UP01_Funds", "UP02_Fund Financials", "UP03_Portfolio Companies", "UP04_PFC Financials"],
+    'PQ Financials': ["08a_UP SF_Financial_New","08b_UP SF_Financial_New","09a_UP SF_Financial_Existing","09b_UP SF_Financial_Existing"],
+    'PQ Fund': [],
+    'PQ Fund Manager':[],
 }
 
 
