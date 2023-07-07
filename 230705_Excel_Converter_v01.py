@@ -11,9 +11,6 @@ import zipfile
 import numpy as np
 
 
-# In[18]:
-
-
 name = st.text_input("File Name")
 date = st.text_input("Today's date i.e. 231231")
 
@@ -30,18 +27,19 @@ st.write('You selected:', selected_option)
 arrays = {
     'Short Analysis':["UP01_Funds", "UP02_Fund Financials", "UP03_Portfolio Companies", "UP04_PFC Financials"],
     'PQ Financials': ["08a_UP SF_Financial_New","08b_UP SF_Financial_New","09a_UP SF_Financial_Existing","09b_UP SF_Financial_Existing"],
-    'PQ Fund': [],
+    'PQ Fund': ["05 Upload SF_Fund_ Existing_A","06 Upload SF_Fund_ Existing_B","07 Upload SF_Fund_New_A","07 Upload SF_Fund_New_B"],
     'PQ Fund Manager':[],
 }
 
 
 sheet_names = arrays[selected_option]
 
-def combinesdds(xlsxs, sheet_names):
+def combine(xlsxs, sheet_names):
     dfs = {name: [] for name in sheet_names}
     for xlsx in xlsxs:
         for sheet_name in sheet_names:
             df = pd.read_excel(xlsx, sheet_name=sheet_name)
+            # Remove empty rows
             df = df.replace(' ', np.nan)
             df = df.dropna(how='all')
             dfs[sheet_name].append(df)
@@ -68,7 +66,7 @@ def zipsdd_csvs(dfs,name,date, sheet_names):
 btn = st.button("Download CSVs")
 
 if btn:
-    dfs =  combinesdds(xlsxs, sheet_names)
+    dfs =  combine(xlsxs, sheet_names)
     zip_io = zipsdd_csvs(dfs,name,date, sheet_names)
     tmp_download_link = st.download_button(
         label='Download CSVs',
@@ -76,6 +74,5 @@ if btn:
         file_name='dataframes.zip',
         mime='application/zip'
         )
-
 
 
