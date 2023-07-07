@@ -31,6 +31,12 @@ arrays = {
     'PQ Fund Manager':[],
 }
 
+for xlsx in xlsxs:
+    for sheet_name in sheet_names:
+        df = pd.read_excel(xlsx, sheet_name=sheet_name)
+        st.write(f"Data for {sheet_name}:")
+        st.write(df)
+
 
 sheet_names = arrays[selected_option]
 
