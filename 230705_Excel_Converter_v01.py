@@ -31,14 +31,14 @@ arrays = {
     'PQ Fund Manager':[],
 }
 
+sheet_names = arrays[selected_option]
+
 for xlsx in xlsxs:
     for sheet_name in sheet_names:
         df = pd.read_excel(xlsx, sheet_name=sheet_name)
         st.write(f"Data for {sheet_name}:")
         st.write(df)
 
-
-sheet_names = arrays[selected_option]
 
 def combine(xlsxs, sheet_names):
     dfs = {name: [] for name in sheet_names}
