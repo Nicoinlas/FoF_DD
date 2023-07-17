@@ -12,7 +12,7 @@ import numpy as np
 
 
 name = st.text_input("File Name")
-date = st.text_input("Today's date i.e. 231231")
+date = st.text_input("Date shown on file i.e. 231231")
 
 
 ## Upload multiple files
@@ -28,17 +28,11 @@ arrays = {
     'Short Analysis':["UP01_Funds", "UP02_Fund Financials", "UP03_Portfolio Companies", "UP04_PFC Financials"],
     'PQ Financials': ["08a_UP SF_Financial_New","08b_UP SF_Financial_New","09a_UP SF_Financial_Existing","09b_UP SF_Financial_Existing"],
     'PQ Fund': ["05 Upload SF_Fund_ Existing_A","06 Upload SF_Fund_ Existing_B","07 Upload SF_Fund_New_A","07 Upload SF_Fund_New_B"],
-    'PQ Fund Manager':[],
+    'PQ Fund Manager':["04_SF Upload_New","05_SF Upload_Existing"],
 }
 
+
 sheet_names = arrays[selected_option]
-
-for xlsx in xlsxs:
-    for sheet_name in sheet_names:
-        df = pd.read_excel(xlsx, sheet_name=sheet_name)
-        st.write(f"Data for {sheet_name}:")
-        st.write(df)
-
 
 def combine(xlsxs, sheet_names):
     dfs = {name: [] for name in sheet_names}
