@@ -10,6 +10,11 @@ from io import BytesIO
 import zipfile
 import numpy as np
 
+# Define your options
+options = ['Short Analysis', 'PQ Financials', 'PQ Fund', 'PQ Fund Manager']
+selected_option = st.selectbox('Select your options:', options)
+# Display the selected options
+st.write('You selected:', selected_option)
 
 name = st.text_input("File Name")
 date = st.text_input("Date shown on file i.e. 231231")
@@ -18,11 +23,6 @@ date = st.text_input("Date shown on file i.e. 231231")
 ## Upload multiple files
 xlsxs = st.file_uploader("Upload your files here...", accept_multiple_files=True, type=["xlsx"])
 
-# Define your options
-options = ['Short Analysis', 'PQ Financials', 'PQ Fund', 'PQ Fund Manager']
-selected_option = st.selectbox('Select your options:', options)
-# Display the selected options
-st.write('You selected:', selected_option)
 
 arrays = {
     'Short Analysis':["UP01_Funds", "UP02_Fund Financials", "UP03_Portfolio Companies", "UP04_PFC Financials"],
