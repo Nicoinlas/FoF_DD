@@ -97,6 +97,15 @@ def zipsdd_csvs(dfs,name,date, sheet_names):
                 # Convert to integer, then to string, and replace the dummy value with NaN
                 df["Company ID PQ"] = df["Company ID PQ"].apply(lambda x: str(int(x)) if x != -1 else np.nan)
 
+            if "Fund ID Sub Strategy PQ" in df.columns:
+                # Fill NaNs with a dummy value
+                df["Fund ID Sub Strategy PQ"].fillna(-1, inplace=True)
+                
+                # Convert to integer, then to string, and replace the dummy value with NaN
+                df["Fund ID Sub Strategy PQ"] = df["Fund ID Sub Strategy PQ"].apply(lambda x: str(int(x)) if x != -1 else np.nan)
+            
+
+
             file_name = str(date + " " + name + "_" + sheet_name + ".csv")
             csv_data = df.to_csv(index=False, encoding="utf-8-sig")
             zipped_files.writestr(file_name, csv_data.encode('utf-8-sig'))
