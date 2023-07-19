@@ -75,11 +75,8 @@ def zipsdd_csvs(dfs,name,date, sheet_names):
                 
                 # Format the datetime column to the desired format
                 df[col] = df[col].dt.strftime('%Y-%m-%dT%H:%M:%SZ')
-            
-            # Find all numeric columns
-            numeric_cols = df.select_dtypes(include=[np.number]).columns
-            
-             if "Vintage PQ" in df.columns:
+                      
+            if "Vintage PQ" in df.columns:
                 # Fill NaNs with a dummy value
                 df["Vintage PQ"].fillna(-1, inplace=True)
                 
