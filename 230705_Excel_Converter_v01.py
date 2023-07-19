@@ -76,7 +76,7 @@ def zipsdd_csvs(dfs,name,date, sheet_names):
                 # Format the datetime column to the desired format
                 df[col] = df[col].dt.strftime('%Y-%m-%dT%H:%M:%SZ')
             if "Vintage PQ" in df.columns:
-                df["Vintage PQ"] = df["Vintage PQ"].astype(str)
+                df["Vintage PQ"] = "'" + df["Vintage PQ"].astype(str)
 
             file_name = str(date + " " + name + "_" + sheet_name + ".csv")
             csv_data = df.to_csv(index=False, encoding="utf-8-sig")
