@@ -53,15 +53,32 @@ def combine(xlsxs, sheet_names):
     return dfs
 
 
+import pandas as pd
+
 def zipsdd_csvs(dfs,name,date, sheet_names):
     zip_io = BytesIO()
     with zipfile.ZipFile(zip_io, mode='w') as zipped_files:
         for sheet_name in sheet_names:
+            # Get the dataframe
+            df = dfs[sheet_name]
+            
+            # Find all columns that contain 'date' in the column name
+            date_cols = [col for col in df.columns if 'date' in col.lower()]
+            
+            # Convert and format datetime columns
+            for col in date_cols:
+                # Ensure the column is in datetime format
+                df[col] = pd.to_datetime(df[col])
+                
+                # Format the datetime column to the desired format
+                df[col] = df[col].dt.strftime('%d/%m/%YT%H:%M:%SZ')
+            
             file_name = str(date + " " + name + "_" + sheet_name + ".csv")
-            csv_data = dfs[sheet_name].to_csv(index=False, encoding="utf-8-sig")
+            csv_data = df.to_csv(index=False, encoding="utf-8-sig")
             zipped_files.writestr(file_name, csv_data.encode('utf-8-sig'))
     zip_io.seek(0)
     return zip_io
+
 
 btn = st.button("Download CSVs")
 
