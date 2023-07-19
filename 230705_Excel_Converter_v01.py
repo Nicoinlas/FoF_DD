@@ -79,8 +79,12 @@ def zipsdd_csvs(dfs,name,date, sheet_names):
             # Find all numeric columns
             numeric_cols = df.select_dtypes(include=[np.number]).columns
             
-            if "Vintage PQ" in df.columns:
-                df["Vintage PQ"] = df["Vintage PQ"].astype(int).astype(str)  # convert to integer first, then to string
+             if "Vintage PQ" in df.columns:
+                # Fill NaNs with a dummy value
+                df["Vintage PQ"].fillna(-1, inplace=True)
+                
+                # Convert to integer, then to string, and replace the dummy value with NaN
+                df["Vintage PQ"] = df["Vintage PQ"].astype(int).astype(str).replace('-1', np.nan)
 
             file_name = str(date + " " + name + "_" + sheet_name + ".csv")
             csv_data = df.to_csv(index=False, encoding="utf-8-sig")
