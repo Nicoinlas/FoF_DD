@@ -71,7 +71,7 @@ def zipsdd_csvs(dfs,name,date, sheet_names):
                 df[col] = pd.to_datetime(df[col])
                 
                 # Format the datetime column to the desired format
-                df[col] = df[col].dt.strftime('%d/%m/%YT%H:%M:%SZ')
+                df[col] = df[col].dt.strftime('%d-%m-%YT%H:%M:%SZ')
             
             file_name = str(date + " " + name + "_" + sheet_name + ".csv")
             csv_data = df.to_csv(index=False, encoding="utf-8-sig")
