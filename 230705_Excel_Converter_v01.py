@@ -47,7 +47,7 @@ def combine(xlsxs, sheet_names):
         dfs[sheet_name] = pd.concat(dfs[sheet_name], ignore_index=True)
     if selected_option == 'Short Analysis':
         if 'Salesforce.com ID' in dfs["UP01_Funds"].columns and 'Date of Latest Quarterly Performance' in dfs["UP01_Funds"].columns:
-            dfs["UP01_Funds"] = dfs["UP01_Funds"].sort_values(['Salesforce.com ID', 'Date of Latest Quarterly Performance'], ascending=[True,False])
+            dfs["UP01_Funds"] = dfs["UP01_Funds"].sort_values(['Salesforce.com ID', 'Date of Latest Quarterly Performance'], ascending=[True,False], na_position='last')
         if 'Salesforce.com ID' in dfs["UP01_Funds"].columns:
             dfs["UP01_Funds"] = dfs["UP01_Funds"].drop_duplicates(subset='Salesforce.com ID', keep='first')
     return dfs
