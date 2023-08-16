@@ -82,6 +82,13 @@ def zipsdd_csvs(dfs,name,date, sheet_names):
                 
                 # Convert to integer, then to string, and replace the dummy value with NaN
                 df["Vintage PQ"] = df["Vintage PQ"].apply(lambda x: str(int(x)) if x != -1 else np.nan)
+           
+            if "Year established PQ" in df.columns:
+                # Fill NaNs with a dummy value
+                df["Year established PQ"].fillna(-1, inplace=True)
+                
+                # Convert to integer, then to string, and replace the dummy value with NaN
+                df["Year established PQ"] = df["Year established PQ"].apply(lambda x: str(int(x)) if x != -1 else np.nan)
                  
             if "Fund ID PQ" in df.columns:
                 # Fill NaNs with a dummy value
