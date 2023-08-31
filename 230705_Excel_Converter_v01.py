@@ -29,6 +29,7 @@ arrays = {
     'PQ Financials': ["08a_UP SF_Financial_New","08b_UP SF_Financial_New","09a_UP SF_Financial_Existing","09b_UP SF_Financial_Existing"],
     'PQ Fund': ["05 Upload SF_Fund_ Existing_A","06 Upload SF_Fund_ Existing_B","07 Upload SF_Fund_New_A","07 Upload SF_Fund_New_B"],
     'PQ Fund Manager':["04_SF Upload_New","05_SF Upload_Existing"],
+    'Long Analysis':["UP_01 Fund Manager","UP_02 Funds", "UP_03 IC Memo", "UP_04 PFCs", "UP_05 PFC Financials","UP_06 Team", "UP_08 Deal Attribution"],
 }
 
 
