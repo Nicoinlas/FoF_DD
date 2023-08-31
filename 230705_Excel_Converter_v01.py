@@ -11,7 +11,7 @@ import zipfile
 import numpy as np
 
 # Define your options
-options = ['Short Analysis', 'PQ Financials', 'PQ Fund', 'PQ Fund Manager']
+options = ['Short Analysis', 'PQ Financials', 'PQ Fund', 'PQ Fund Manager','Long Analysis']
 selected_option = st.selectbox('Select your options:', options)
 # Display the selected options
 st.write('You selected:', selected_option)
