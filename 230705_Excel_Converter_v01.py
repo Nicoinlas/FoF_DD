@@ -17,7 +17,7 @@ selected_option = st.selectbox('Select your options:', options)
 st.write('You selected:', selected_option)
 
 name = st.text_input("File Name")
-date = st.text_input("Date shown on file i.e. 231231")
+date = st.text_input("Date will be shown on file i.e. 231231")
 
 
 ## Upload multiple files
