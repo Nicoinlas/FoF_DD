@@ -21,7 +21,7 @@ name = st.text_input("File Name")
 
 # Get the current date, Format the date as YYMMDD
 today = datetime.date.today()
-date = int(today.strftime('%y%m%d'))
+date = str(today.strftime('%y%m%d'))
 
 
 ## Upload multiple files
