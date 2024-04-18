@@ -9,6 +9,7 @@ import pandas as pd
 from io import BytesIO
 import zipfile
 import numpy as np
+import datetime
 
 # Define your options
 options = ['Short Analysis', 'PQ Financials', 'PQ Fund', 'PQ Fund Manager','Long Analysis']
