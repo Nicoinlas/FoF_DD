@@ -17,7 +17,10 @@ selected_option = st.selectbox('Select your options:', options)
 st.write('You selected:', selected_option)
 
 name = st.text_input("File Name")
-date = st.text_input("Date will be shown on file i.e. 231231")
+
+# Get the current date, Format the date as YYMMDD
+today = datetime.date.today()
+date = int(today.strftime('%y%m%d'))
 
 
 ## Upload multiple files
