@@ -76,7 +76,7 @@ def zipsdd_csvs(dfs,name,date, sheet_names):
             # Convert and format datetime columns
             for col in date_cols:
                 # Ensure the column is in datetime format
-                df[col] = pd.to_datetime(df[col], format='mixed')
+                df[col] = pd.to_datetime(df[col], dayfirst=True)
                 
                 # Format the datetime column to the desired format
                 df[col] = df[col].dt.strftime('%Y-%m-%dT%H:%M:%SZ')
