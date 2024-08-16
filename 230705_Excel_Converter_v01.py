@@ -63,7 +63,7 @@ def zipsdd_csvs(dfs, name, date, sheet_names):
             date_cols = [col for col in df.columns if 'date' in col.lower()]
             
             for col in date_cols:
-                for idx, value in df[col].iteritems():
+                for idx, value in df[col].items():
                     try:
                         # Ensure the column is in datetime format
                         df.at[idx, col] = pd.to_datetime(value, dayfirst=True)
@@ -71,8 +71,8 @@ def zipsdd_csvs(dfs, name, date, sheet_names):
                         # Format the datetime column to the desired format
                         df.at[idx, col] = df.at[idx, col].strftime('%Y-%m-%dT%H:%M:%SZ')
                     except Exception as e:
-                        # Find the Excel-like cell address
-                        cell_address = f"{pd.io.formats.excel.ExcelFormatter()._format_col_num(idx + 1)}{idx + 2}"  # +1 for Excel 1-based index, +2 for header row
+                        # Log the Excel-like cell address
+                        cell_address = f"{pd.io.formats.excel.ExcelFormatter()._format_col_num(col + 1)}{idx + 2}"  # +1 for Excel 1-based index, +2 for header row
                         error_message = (f"Error in sheet '{sheet_name}', cell '{cell_address}', "
                                          f"column '{col}', row {idx + 2}: "
                                          f"{type(value)} value '{value}' - {str(e)}")
