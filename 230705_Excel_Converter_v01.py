@@ -20,7 +20,7 @@ name = st.text_input("File Name")
 
 # Get the current date, Format the date as YYMMDD
 today = datetime.date.today()
-date = str(today.strftime('%y%mdd'))
+date = str(today.strftime('%y%m%dd'))
 
 # Upload multiple files
 xlsxs = st.file_uploader("Upload your files here...", accept_multiple_files=True, type=["xlsx"])
