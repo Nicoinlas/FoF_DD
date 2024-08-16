@@ -53,6 +53,14 @@ def combine(xlsxs, sheet_names):
             dfs["UP01_Funds"] = dfs["UP01_Funds"].drop_duplicates(subset='Salesforce.com ID', keep='first')
     return dfs
 
+def column_index_to_letter(index):
+    """Convert a zero-indexed column index to an Excel-style column letter."""
+    letter = ''
+    while index >= 0:
+        letter = chr(index % 26 + 65) + letter
+        index = index // 26 - 1
+    return letter
+
 def zipsdd_csvs(dfs, name, date, sheet_names):
     zip_io = BytesIO()
     with zipfile.ZipFile(zip_io, mode='w') as zipped_files:
@@ -71,8 +79,9 @@ def zipsdd_csvs(dfs, name, date, sheet_names):
                         # Format the datetime column to the desired format
                         df.at[idx, col] = df.at[idx, col].strftime('%Y-%m-%dT%H:%M:%SZ')
                     except Exception as e:
-                        # Log the Excel-like cell address
-                        cell_address = f"{pd.io.formats.excel.ExcelFormatter()._format_col_num(col + 1)}{idx + 2}"  # +1 for Excel 1-based index, +2 for header row
+                        # Calculate the Excel-like cell address
+                        col_letter = column_index_to_letter(df.columns.get_loc(col))
+                        cell_address = f"{col_letter}{idx + 2}"  # +2 for Excel 1-based index and header row
                         error_message = (f"Error in sheet '{sheet_name}', cell '{cell_address}', "
                                          f"column '{col}', row {idx + 2}: "
                                          f"{type(value)} value '{value}' - {str(e)}")
